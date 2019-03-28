@@ -31,14 +31,17 @@ class OrderService {
         }));
     }
 
-    async getOrdersHTML(orderIds, url) {
+    async getJsonOrders(orderIds, url) {
         return new Promise((resolve, reject) => {
             if (!orderIds.length) reject(new Error('No order ids!'));
             const htmlOrders = [];
             orderIds.forEach((orderId) => {
                 this.request({
                     method: 'get',
-                    url: url + `${orderId}&timestamp=${Date.now()}`
+                    url: url + `${orderId}&timestamp=${Date.now()}`,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
                 }, (err, res) => {
                     if (err) {
                         reject(err);

@@ -1,13 +1,9 @@
 const express = require('express');
 const path = require('path');
 const PORT = process.env.PORT || 5000;
-// const axios = require('axios');
 const requestLib = require('request');
 const j = requestLib.jar();
 const request = requestLib.defaults({jar: j});
-const cheerio = require('cheerio');
-const bodyParser = require('body-parser');
-const cors = require('cors');
 
 const LoginServiceClass = require('./services/login');
 const LoginService = new LoginServiceClass(request);
@@ -41,14 +37,15 @@ async function init() {
         j.setCookie(requestCookie, STANDARD_ORDER_URL);
         j.setCookie(requestCookie, POOLED_ORDER_URL);
     });
-    const orderIds = await OrderService.getOrderIds(MAIN_URL);
-    console.log(orderIds);
-    const pooledHtmlOrders = await OrderService.getOrdersHTML(orderIds.pooledOrderIds, POOLED_ORDER_URL);
-    const standardHtmlOrders = await OrderService.getOrdersHTML(orderIds.standardOrderIds, STANDARD_ORDER_URL);
-    pooledHtmlOrders.forEach((htmlOrder) => {
-        const order = ParseService.mapPooledHtmlOrderToOrder(htmlOrder);
+    // const orderIds = await OrderService.getOrderIds(MAIN_URL);
+    // console.log(orderIds);
+    // const jsonPooledOrders = await OrderService.getJsonOrders(orderIds.pooledOrderIds, POOLED_ORDER_URL);
+    // const jsonStandardOrders = await OrderService.getJsonOrders(orderIds.standardOrderIds, STANDARD_ORDER_URL);
+    const jsonPooledOrders = require('./mock/pooled-orders');
+    // pooledHtmlOrders.forEach((pooledOrder) => {
+        const order = ParseService.mapJsonPooledOrderToOrders([JSON.parse(jsonPooledOrders[2])]);
         console.log(order);
-    });
+    // });
 }
 
 express()
