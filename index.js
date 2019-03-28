@@ -22,7 +22,6 @@ async function initLogin() {
 
 let response = '<h1>lala</h1>';
 
-// const isLoggedIn = initLogin();
 const lala = init();
 
 async function init() {
@@ -37,15 +36,15 @@ async function init() {
         j.setCookie(requestCookie, STANDARD_ORDER_URL);
         j.setCookie(requestCookie, POOLED_ORDER_URL);
     });
-    // const orderIds = await OrderService.getOrderIds(MAIN_URL);
-    // console.log(orderIds);
-    // const jsonPooledOrders = await OrderService.getJsonOrders(orderIds.pooledOrderIds, POOLED_ORDER_URL);
-    // const jsonStandardOrders = await OrderService.getJsonOrders(orderIds.standardOrderIds, STANDARD_ORDER_URL);
-    const jsonPooledOrders = require('./mock/pooled-orders');
-    // pooledHtmlOrders.forEach((pooledOrder) => {
-        const order = ParseService.mapJsonPooledOrderToOrders([JSON.parse(jsonPooledOrders[2])]);
-        console.log(order);
-    // });
+    const orderIds = await OrderService.getOrderIds(MAIN_URL);
+    const jsonStringsPooledOrders = await OrderService.getJsonOrders(orderIds.pooledOrderIds, POOLED_ORDER_URL);
+    const jsonStringsStandardOrders = await OrderService.getJsonOrders(orderIds.standardOrderIds, STANDARD_ORDER_URL);
+    const jsonPooledOrders = ParseService.parseJsonStringsToJson(jsonStringsPooledOrders);
+    const jsonStandardOrders = ParseService.parseJsonStringsToJson(jsonStringsStandardOrders);
+    const pooledOrders = ParseService.mapJsonPooledOrdersToOrders(jsonPooledOrders);
+    const standardOrders = ParseService.mapJsonStandardOrdersToOrders(jsonStandardOrders);
+    console.log(pooledOrders);
+    console.log(standardOrders);
 }
 
 express()

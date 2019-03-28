@@ -1,3 +1,4 @@
+/*
 const jsonPooledOrders = [{
     "ResName": "למון ליים בר סלטים",
     "Address": {
@@ -725,10 +726,21 @@ const jsonStandardOrders = [{
     "Canceled": false,
     "PickupAddressStr": ""
 }];
+*/
+const standOrdersJsonStrings = require('./mock/standard-orders');
+const jsonStandardOrders = standOrdersJsonStrings.map((jsonStandardOrderString) => {
+    return JSON.parse(jsonStandardOrderString);
+});
+
+const pooledOrdersJsonStrings = require('./mock/pooled-orders');
+const jsonPooledOrders = pooledOrdersJsonStrings.map((pooledOrderJsonString) => {
+    return JSON.parse(pooledOrderJsonString);
+});
 
 const ParseService = require('./services/parse');
 
-// const pooledOrders = ParseService.mapJsonPooledOrdersToOrders(jsonPooledOrders);
-const standardOrders = ParseService.mapJsonStandardOrdersToOrders(jsonStandardOrders);
+const pooledOrders = ParseService.mapJsonPooledOrdersToOrders(jsonPooledOrders);
+console.log(pooledOrders);
+// const standardOrders = ParseService.mapJsonStandardOrdersToOrders(jsonStandardOrders);
 
-console.log(standardOrders);
+// console.log(standardOrders);
