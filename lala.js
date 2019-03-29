@@ -1,7 +1,7 @@
 const DatabaseService = require('./services/database');
 
 const pooledOrder = {
-    "totalPrice": 75.2,
+    "totalprice": 75.2,
     "companyAddress": "הגלבוע  4, איירפורט סיטי ",
     "id": 16871500,
     "restaurantName": "למון ליים בר סלטים",
@@ -20,7 +20,58 @@ const pooledOrder = {
                     "id": 1480839,
                     "name": "כריך עוף מקסיקני",
                     "price": 40,
-                    "saladIngredients": []
+                    "saladIngredients": [
+                        {
+                            "id": 1445824,
+                            "price": 0,
+                            "name": "עגבניה"
+                        },
+                        {
+                            "id": 1445825,
+                            "price": 0,
+                            "name": "מלפפון"
+                        },
+                        {
+                            "id": 1445826,
+                            "price": 0,
+                            "name": "גזר"
+                        },
+                        {
+                            "id": 1445827,
+                            "price": 0,
+                            "name": "פלפל צבעוני"
+                        },
+                        {
+                            "id": 1445830,
+                            "price": 0,
+                            "name": "קולורבי"
+                        },
+                        {
+                            "id": 1445837,
+                            "price": 0,
+                            "name": "סלרי"
+                        },
+                        {
+                            "id": 1445842,
+                            "price": 0,
+                            "name": "בזיליקום"
+                        },
+                        {
+                            "id": 1445848,
+                            "price": 0,
+                            "name": "פרוסות זיתים ירוקים"
+                        },
+                        {
+                            "id": 2365117,
+                            "price": 0,
+                            "name": "סלק חי "
+                        },
+                        {
+                            "id": 2380277,
+                            "price": 0,
+                            "name": "קוביות מלפפון חמוץ"
+                        }
+                    ]
                 }
             ],
             "address": "הגלבוע  4, איירפורט סיטי ",
@@ -48,10 +99,23 @@ const pooledOrder = {
     ]
 };
 
-DatabaseService.insertPooledOrder(pooledOrder)
-.then(() => {
-    console.log('Done!');
-})
-.catch((err) => {
-    console.log(err);
+init().then(() => {
+    console.log('done!');
+}).catch((err) => {
+    console.log('CATCHED ERROR!');
 });
+
+async function init() {
+    const sequelize = await DatabaseService.connectDatabase();
+    let res;
+    try {
+        res = await DatabaseService.insertPooledOrder(sequelize, pooledOrder)
+    } catch (err) {
+        console.log(err);
+        sequelize.close();
+        throw err;
+    }
+    sequelize.close();
+    return res;
+}
+
