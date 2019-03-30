@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/node_modules/sequelize/lib/dialects/mysql/query.js" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="26e05626-4943-468d-b32d-25aa0635897b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lala.js" beforeDir="false" afterPath="$PROJECT_DIR$/lala.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mock/pooled-orders.json" beforeDir="false" afterPath="$PROJECT_DIR$/mock/pooled-orders.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/parse.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/parse.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,11 +22,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lala.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="972">
-              <caret line="75" column="14" lean-forward="true" selection-start-line="75" selection-start-column="14" selection-end-line="75" selection-end-column="14" />
+            <state relative-caret-position="180">
+              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/sequelize/lib/dialects/mysql/query.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="183">
+              <caret line="247" lean-forward="true" selection-start-line="247" selection-end-line="247" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/services/parse.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="571">
+              <caret line="65" column="52" selection-start-line="65" selection-start-column="52" selection-end-line="65" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -30,17 +52,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mock/pooled-orders.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-203">
-              <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
+            <state relative-caret-position="132">
+              <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mock/standard-orders.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="1" column="358" selection-start-line="1" selection-start-column="358" selection-end-line="1" selection-end-column="358" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/database.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="25" column="53" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
+            <state relative-caret-position="2106">
+              <caret line="147" column="16" selection-start-line="147" selection-start-column="16" selection-end-line="147" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/services/order.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -49,19 +98,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>User_Phone01</find>
-      <find>05</find>
-      <find>סלט גדו</find>
-      <find>עלי בייבי</find>
-      <find>סלט גדול בהרכבה</find>
-      <find>TotalPrice</find>
-      <find>SubmitTime</find>
-      <find>timestamp</find>
-      <find>totalPrice</find>
-      <find>to</find>
-      <find>time</find>
-      <find>new Standard</find>
-      <find>PrintedOrders</find>
       <find>Sb</find>
       <find>ID ===</find>
       <find>Co</find>
@@ -79,6 +115,19 @@
       <find>insertSaladIngredient</find>
       <find>insertPooled</find>
       <find>pooledOrder</find>
+      <find>insertStandardOrderData</find>
+      <find>מלפפ</find>
+      <find>transaction.comm</find>
+      <find>phone01</find>
+      <find>CompanyName</find>
+      <find>2550397</find>
+      <find>31719342</find>
+      <find>1308904</find>
+      <find>2</find>
+      <find>saladIn</find>
+      <find>144589</find>
+      <find>1445893</find>
+      <find>1445839</find>
     </findStrings>
     <replaceStrings>
       <replace>tenbis1</replace>
@@ -97,20 +146,20 @@
         <option value="$PROJECT_DIR$/checklist.md" />
         <option value="$PROJECT_DIR$/services/orders.js" />
         <option value="$PROJECT_DIR$/services/login.js" />
-        <option value="$PROJECT_DIR$/services/order.js" />
         <option value="$PROJECT_DIR$/model/order.model.js" />
         <option value="$PROJECT_DIR$/model/pooled.order.model.js" />
         <option value="$PROJECT_DIR$/model/salad-ingredient.model.js" />
         <option value="$PROJECT_DIR$/model/dish.model.js" />
         <option value="$PROJECT_DIR$/model/standard.order.model.js" />
-        <option value="$PROJECT_DIR$/mock/standard-orders.json" />
         <option value="$PROJECT_DIR$/parsing.js" />
         <option value="$PROJECT_DIR$/model/customer.model.js" />
-        <option value="$PROJECT_DIR$/services/parse.js" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/services/order.js" />
+        <option value="$PROJECT_DIR$/mock/standard-orders.json" />
+        <option value="$PROJECT_DIR$/services/parse.js" />
         <option value="$PROJECT_DIR$/mock/pooled-orders.json" />
-        <option value="$PROJECT_DIR$/lala.js" />
         <option value="$PROJECT_DIR$/services/database.js" />
+        <option value="$PROJECT_DIR$/lala.js" />
       </list>
     </option>
   </component>
@@ -138,11 +187,6 @@
               <item name="cryptic-retreat-82925" type="462c0819:PsiDirectoryNode" />
               <item name="mock" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="cryptic-retreat-82925" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cryptic-retreat-82925" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -155,7 +199,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.General" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -212,12 +256,12 @@
       <workItem from="1553762000231" duration="10000" />
       <workItem from="1553770955351" duration="1096000" />
       <workItem from="1553788731343" duration="10133000" />
-      <workItem from="1553837914227" duration="7955000" />
+      <workItem from="1553837914227" duration="22481000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48190000" />
+    <option name="totallyTimeSpent" value="62716000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -238,8 +282,8 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32719547" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.9173669" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.7492918" />
+      <window_info active="true" anchor="bottom" x="-1920" y="0" width="1536" height="824" id="Debug" order="3" type="FLOATING" visible="true" weight="0.9164306" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32913166" />
@@ -273,6 +317,42 @@
           <line>45</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/services/database.js</url>
+          <line>83</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/services/database.js</url>
+          <line>105</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/services/database.js</url>
+          <line>129</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/services/database.js</url>
+          <line>147</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/services/database.js</url>
+          <line>177</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/node_modules/sequelize/lib/dialects/mysql/query.js</url>
+          <line>249</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -305,13 +385,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/order.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="17" column="39" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/checklist.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -319,13 +392,6 @@
             <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mock/standard-orders.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="2929" lean-forward="true" selection-start-line="8" selection-start-column="2929" selection-end-line="8" selection-end-column="2929" />
         </state>
       </provider>
     </entry>
@@ -338,20 +404,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/company.model.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-90">
-          <caret line="13" column="26" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/parse.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="14" column="42" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/customer.model.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -388,24 +440,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mock/pooled-orders.json">
+    <entry file="file://$PROJECT_DIR$/services/order.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-203">
-          <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
+        <state relative-caret-position="144">
+          <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lala.js">
+    <entry file="file://$PROJECT_DIR$/mock/standard-orders.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="75" column="14" lean-forward="true" selection-start-line="75" selection-start-column="14" selection-end-line="75" selection-end-column="14" />
+        <state relative-caret-position="18">
+          <caret line="1" column="358" selection-start-line="1" selection-start-column="358" selection-end-line="1" selection-end-column="358" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mock/pooled-orders.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/parse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="65" column="52" selection-start-line="65" selection-start-column="52" selection-end-line="65" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/sequelize/lib/dialects/mysql/query.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="247" lean-forward="true" selection-start-line="247" selection-end-line="247" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/services/database.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="25" column="53" selection-start-line="25" selection-start-column="53" selection-end-line="25" selection-end-column="53" />
+        <state relative-caret-position="2106">
+          <caret line="147" column="16" selection-start-line="147" selection-start-column="16" selection-end-line="147" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lala.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
         </state>
       </provider>
     </entry>

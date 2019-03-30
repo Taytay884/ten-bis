@@ -12,25 +12,41 @@ class DatabaseService {
 
     }
 
-    async insertPooledOrder(sequelize, pooledOrder) {
-        const transaction = await sequelize.transaction();
-        try {
-            const res = {};
-            res.insertCompany = await this.insertCompany(sequelize, pooledOrder, transaction);
-            res.insertCustomers = await this.insertCustomers(sequelize, pooledOrder, transaction);
-            res.insertDishes = await this.insertDishes(sequelize, pooledOrder, transaction);
-            res.insertSaladIngredients = await this.insertSaladIngredients(sequelize, pooledOrder, transaction);
-            res.insertPooledOrderData = await this.insertPooledOrderData(sequelize, transaction, pooledOrder.id, pooledOrder.companyName, pooledOrder.restaurantName);
-            res.insertStandOrderData = await this.insertStandardOrdersData(sequelize, transaction, pooledOrder);
-            // todo: insert order to dish.
-            // todo: insert dish to salad ingredient.
-            await transaction.commit();
-            return res;
-        } catch (err) {
-            console.log('CATCHED');
-            await transaction.rollback();
-            throw err;
-        }
+    async insertPooledOrder(sequelize, transaction, pooledOrder) {
+        const res = {};
+        res.insertCompany = await this.insertCompany(sequelize, pooledOrder, transaction);
+        res.insertPooledOrderData = await this.insertPooledOrderData(sequelize, transaction, pooledOrder.id, pooledOrder.companyName, pooledOrder.restaurantName);
+        // res.insertCustomers = await this.insertCustomers(sequelize, pooledOrder, transaction);
+        const promises = pooledOrder.orders.map((standardOrder) => {
+            return this.insertStandardOrder(sequelize, transaction, standardOrder, pooledOrder.id);
+        });
+        res.insertStandardOrders = await Promise.all(promises);
+        return res;
+    }
+
+    async insertStandardOrder(sequelize, transaction, standardOrder, pooledOrderId) {
+        // return new Promise(async (resolve, reject) => {
+            // try {
+                const res = {};
+                res.insertCustomer = await this.insertCustomer(
+                    sequelize,
+                    transaction,
+                    standardOrder.customer.name,
+                    standardOrder.customer.phone,
+                    standardOrder.customer.email
+                );
+                res.insertDishes = await this.insertDishes(sequelize, standardOrder, transaction);
+                res.insertSaladIngredients = await this.insertSaladIngredients(sequelize, standardOrder, transaction);
+                res.insertStandOrderData = await this.insertStandardOrdersData(sequelize, transaction, standardOrder, pooledOrderId);
+                res.insertStandardOrdersToDishes = await this.insertStandardOrdersToDishes(sequelize, transaction, standardOrder);
+                res.insertDishesToSaladIngredients = await this.insertDishesToSaladIngredients(sequelize, transaction, standardOrder);
+                console.log('ORDER ID: ', standardOrder.id);
+                return res;
+                // resolve(res);
+            // } catch (err) {
+                // reject(err);
+            // }
+        // });
     }
 
     async insertCompany(sequelize, pooledOrder, transaction) {
@@ -70,11 +86,9 @@ class DatabaseService {
         });
     }
 
-    async insertDishes(sequelize, pooledOrder, transaction) {
-        const promises = pooledOrder.orders.map((order) => {
-            return order.dishes.map((dish) => {
-                return this.insertDish(sequelize, transaction, dish.id, dish.name, dish.price);
-            });
+    async insertDishes(sequelize, standardOrder, transaction) {
+        const promises = standardOrder.dishes.map((dish) => {
+            return this.insertDish(sequelize, transaction, dish.id, dish.name, dish.price);
         });
         return Promise.all(promises);
     }
@@ -94,12 +108,10 @@ class DatabaseService {
         });
     }
 
-    async insertSaladIngredients(sequelize, pooledOrder, transaction) {
-        const promises = pooledOrder.orders.map((order) => {
-            return order.dishes.map((dish) => {
-                return dish.saladIngredients.map((saladIngredient) => {
-                    return this.insertSaladIngredient(sequelize, transaction, saladIngredient.id, saladIngredient.name, saladIngredient.price);
-                });
+    async insertSaladIngredients(sequelize, standardOrder, transaction) {
+        const promises = standardOrder.dishes.map((dish) => {
+            return dish.saladIngredients.map((saladIngredient) => {
+                return this.insertSaladIngredient(sequelize, transaction, saladIngredient.id, saladIngredient.name, saladIngredient.price);
             });
         });
         return Promise.all(promises);
@@ -131,22 +143,23 @@ class DatabaseService {
                 replacements: [pooledOrderId, companyName, restaurantName],
                 type: Sequelize.QueryTypes.INSERT,
                 transaction: transaction
-            });
+            }).catch((err) => {
+            if (err.name != 'SequelizeUniqueConstraintError') {
+                throw err;
+            }
+        });
     }
 
-    async insertStandardOrdersData(sequelize, transaction, pooledOrder) {
-        const promises = pooledOrder.orders.map((order) => {
-            return this.insertStandardOrderData(
-                sequelize,
-                transaction,
-                order.id,
-                new Date(order.date),
-                order.price,
-                order.address,
-                pooledOrder.id,
-                order.customer)
-        });
-        return Promise.all(promises);
+    async insertStandardOrdersData(sequelize, transaction, standardOrder, pooledOrderId) {
+        return this.insertStandardOrderData(
+            sequelize,
+            transaction,
+            standardOrder.id,
+            new Date(standardOrder.date),
+            standardOrder.price,
+            standardOrder.address,
+            pooledOrderId,
+            standardOrder.customer);
     }
 
     async insertStandardOrderData(sequelize, transaction, orderId, date, price, address, pooledOrderId, customer) {
@@ -158,6 +171,48 @@ class DatabaseService {
                        WHERE tenbis1.customer.name = ? AND customer.email = ?))`,
             {
                 replacements: [orderId, date, price, address, pooledOrderId, customer.name, customer.email],
+                type: Sequelize.QueryTypes.INSERT,
+                transaction: transaction
+            }).catch((err) => {
+            if (err.name != 'SequelizeUniqueConstraintError') {
+                throw err;
+            }
+        });
+    }
+
+    async insertStandardOrdersToDishes(sequelize, transaction, standardOrder) {
+        const promises = standardOrder.dishes.map((dish) => {
+            return this.insertStandardOrderToDish(sequelize, transaction, standardOrder.id, dish.id);
+        });
+        return Promise.all(promises);
+    }
+
+    async insertStandardOrderToDish(sequelize, transaction, orderId, dishId) {
+        return await sequelize.query(`
+                INSERT INTO tenbis1.order_to_dish (order_id, dish_id) 
+                VALUES (?, ?)`,
+            {
+                replacements: [orderId, dishId],
+                type: Sequelize.QueryTypes.INSERT,
+                transaction: transaction
+            });
+    }
+
+    async insertDishesToSaladIngredients(sequelize, transaction, standardOrder) {
+        const promises = standardOrder.dishes.map((dish) => {
+            return dish.saladIngredients.map((saladIngredient) => {
+                return this.insertDishToSaladIngredient(sequelize, transaction, dish.id, saladIngredient.id);
+            });
+        });
+        return Promise.all(promises);
+    }
+
+    async insertDishToSaladIngredient(sequelize, transaction, dishId, saladIngredientId) {
+        return await sequelize.query(`
+                INSERT INTO tenbis1.dish_to_salad_ingredient (dish_id, salad_ingredient_id) 
+                VALUES (?, ?)`,
+            {
+                replacements: [dishId, saladIngredientId],
                 type: Sequelize.QueryTypes.INSERT,
                 transaction: transaction
             });
