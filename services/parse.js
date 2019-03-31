@@ -33,8 +33,10 @@ class ParseService {
 
     parseJsonStandardOrderToStandardOrder(standardOrder) {
         const timestamp = Number(standardOrder.SubmitTime.substring(6, 19)); // Remove /Date(...)/ From "/Date(1553666880000)/"
-        const customerPhoneNumber = this.checkPhoneIsValid(standardOrder.User.Phone01) ? standardOrder.User.Phone01 : null;
-
+        let customerPhoneNumber = this.checkPhoneIsValid(standardOrder.User.Phone01) ? standardOrder.User.Phone01 : null;
+        if (!customerPhoneNumber) {
+            customerPhoneNumber = this.checkPhoneIsValid(standardOrder.User.Phone02) ? standardOrder.User.Phone02 : null;
+        }
         const customer = new Customer(standardOrder.User.Name, customerPhoneNumber, standardOrder.User.Email);
         const totalPrice = standardOrder.Payment.TotalDishPrice;
         const address = standardOrder.DeliveryAddress.AddressLine;
