@@ -1,0 +1,12 @@
+* {
+  font-family: Tahoma;
+}
+
+td, th {
+  padding: 0 5px;
+  text-align: center;
+}
+
+.most-ordered-dish {
+  color: red;
+}
