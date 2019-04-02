@@ -59,7 +59,16 @@ async function initLogin() {
     return await LoginService.login(LOGIN_URL);
 }
 
+async function getTables() {
+    console.log('Getting tables...');
+    return true;
+}
+
 express()
     .use(express.static(path.join(__dirname, 'public')))
-    .get('/', (req, res) => res.send(response))
+    .get('/', (req, res) => {
+        getTables().then(() => {
+            res.send(response)
+        });
+    })
     .listen(PORT, () => console.log(`Listening on ${PORT}`));
