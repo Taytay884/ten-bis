@@ -18,9 +18,8 @@ const MAIN_URL = 'https://www.10bis.co.il/reshome/';
 const STANDARD_ORDER_URL = 'https://www.10bis.co.il/reshome/Orders/Standard?id=';
 const POOLED_ORDER_URL = 'https://www.10bis.co.il/reshome/Orders/Pooled?id=';
 
-let response = '<h1>lala</h1>';
-
 // cron.schedule('0 22 * * *', init, {});
+cron.schedule('*/5 * * * *', init, {});
 
 async function init() {
     try {
@@ -65,10 +64,6 @@ async function getTables() {
 }
 
 express()
-    // .use(express.static(path.join(__dirname, 'public')))
-    // .set('views', path.join(__dirname, 'views'))
-    // .set('view engine', 'ejs')
-    // .get('/', (req, res) => res.render('pages/index'))
     .use(express.static(__dirname + '/frontend'))
     .get('/', (req, res) => {
         res.sendFile(path.join(__dirname+'/frontend/index.html'));
