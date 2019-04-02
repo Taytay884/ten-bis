@@ -20,10 +20,10 @@
     "form-data": "^2.3.3",
     "mysql2": "^1.6.5",
     "node-cron": "^2.0.3",
-    "sequelize": "^5.2.3"
+    "sequelize": "^5.2.3",
+    "request": "^2.88.0"
   },
   "devDependencies": {
-    "request": "^2.88.0",
     "tape": "^4.7.0"
   },
   "repository": {

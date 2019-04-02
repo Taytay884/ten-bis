@@ -4,7 +4,10 @@
     <bookmark url="file://$PROJECT_DIR$/node_modules/sequelize/lib/dialects/mysql/query.js" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26e05626-4943-468d-b32d-25aa0635897b" name="Default Changelist" comment="" />
+    <list default="true" id="26e05626-4943-468d-b32d-25aa0635897b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -19,13 +22,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/database.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-8">
+            <state relative-caret-position="2790">
               <caret line="155" column="9" selection-start-line="155" selection-start-column="9" selection-end-line="155" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="54">
@@ -34,10 +37,19 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/order.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
+            <state relative-caret-position="414">
               <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
             </state>
           </provider>
@@ -111,20 +123,20 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/services/database.js" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="-4" />
+    <option name="y" value="-5" />
     <option name="width" value="1600" />
-    <option name="height" value="841" />
+    <option name="height" value="842" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -132,20 +144,11 @@
               <item name="cryptic-retreat-82925" type="b2602c69:ProjectViewProjectNode" />
               <item name="cryptic-retreat-82925" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="cryptic-retreat-82925" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cryptic-retreat-82925" type="462c0819:PsiDirectoryNode" />
-              <item name="mock" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="cryptic-retreat-82925" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cryptic-retreat-82925" type="462c0819:PsiDirectoryNode" />
-              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -213,11 +216,12 @@
       <workItem from="1553788731343" duration="10133000" />
       <workItem from="1553837914227" duration="22481000" />
       <workItem from="1554100768805" duration="12000" />
+      <workItem from="1554229918521" duration="26000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65998000" />
+    <option name="totallyTimeSpent" value="66262000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -230,6 +234,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49019608" visible="true" weight="0.15465961" />
       <window_info id="Structure" order="1" sideWeight="0.50980395" side_tool="true" weight="0.15472417" />
@@ -389,13 +394,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/order.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mock/standard-orders.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -438,13 +436,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="155" column="9" selection-start-line="155" selection-start-column="9" selection-end-line="155" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/request/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -457,10 +448,31 @@
     <entry file="file://$PROJECT_DIR$/Procfile">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/services/database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2790">
+          <caret line="155" column="9" selection-start-line="155" selection-start-column="9" selection-end-line="155" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/order.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" column="47" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
