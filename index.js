@@ -18,8 +18,7 @@ const MAIN_URL = 'https://www.10bis.co.il/reshome/';
 const STANDARD_ORDER_URL = 'https://www.10bis.co.il/reshome/Orders/Standard?id=';
 const POOLED_ORDER_URL = 'https://www.10bis.co.il/reshome/Orders/Pooled?id=';
 
-// cron.schedule('0 22 * * *', init, {});
-cron.schedule('*/5 * * * *', init, {});
+cron.schedule('0 22 * * *', init, {});
 
 async function init() {
     try {
@@ -58,14 +57,24 @@ async function initLogin() {
     return await LoginService.login(LOGIN_URL);
 }
 
-async function getTables() {
-    console.log('Getting tables...');
-    return true;
+async function getData() {
+    return new Promise(resolve => {
+        console.log('User ask for data, getting data...');
+        setTimeout(() => {
+            resolve({data: 'Some data', data2: 'Some data2'})
+        }, 5000);
+        return true;
+    });
+
 }
 
 express()
     .use(express.static(__dirname + '/frontend'))
     .get('/', (req, res) => {
-        res.sendFile(path.join(__dirname+'/frontend/index.html'));
+        res.sendFile(path.join(__dirname + '/frontend/index.html'));
+    })
+    .get('/get-data', async (req, res) => {
+        const data = await getData();
+        res.send(data);
     })
     .listen(PORT, () => console.log(`Listening on ${PORT}`));
