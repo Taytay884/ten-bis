@@ -12,6 +12,34 @@ class DatabaseService {
 
     }
 
+    async insertOrdersData(pooledOrders, standardOrders) {
+        const sequelize = await this.connectDatabase();
+        const transaction = await sequelize.transaction();
+        try {
+            const res = [];
+            const insertPooledOrderPromises = pooledOrders.map((pooledOrder) => {
+                return this.insertPooledOrder(sequelize, transaction, pooledOrder);
+            });
+            const insertStandardOrdersPromises = standardOrders.map((standardOrder) => {
+                return this.insertStandardOrder(sequelize, transaction, standardOrder);
+            });
+            res.push(await Promise.all(insertPooledOrderPromises));
+            res.push(await Promise.all(insertStandardOrdersPromises));
+            await transaction.commit();
+            await sequelize.close();
+            return res;
+        } catch (err) {
+            console.log(err);
+            if (sequelize) {
+                await sequelize.close();
+            }
+            if (transaction) {
+                await transaction.rollback();
+            }
+            throw err;
+        }
+    }
+
     async insertPooledOrder(sequelize, transaction, pooledOrder) {
         const res = {};
         res.insertCompany = await this.insertCompany(sequelize, pooledOrder, transaction);
@@ -26,26 +54,26 @@ class DatabaseService {
 
     async insertStandardOrder(sequelize, transaction, standardOrder, pooledOrderId) {
         // return new Promise(async (resolve, reject) => {
-            // try {
-                const res = {};
-                res.insertCustomer = await this.insertCustomer(
-                    sequelize,
-                    transaction,
-                    standardOrder.customer.name,
-                    standardOrder.customer.phone,
-                    standardOrder.customer.email
-                );
-                res.insertDishes = await this.insertDishes(sequelize, standardOrder, transaction);
-                res.insertSaladIngredients = await this.insertSaladIngredients(sequelize, standardOrder, transaction);
-                res.insertStandOrderData = await this.insertStandardOrdersData(sequelize, transaction, standardOrder, pooledOrderId);
-                res.insertStandardOrdersToDishes = await this.insertStandardOrdersToDishes(sequelize, transaction, standardOrder);
-                res.insertDishesToSaladIngredients = await this.insertDishesToSaladIngredients(sequelize, transaction, standardOrder);
-                console.log('ORDER ID: ', standardOrder.id);
-                return res;
-                // resolve(res);
-            // } catch (err) {
-                // reject(err);
-            // }
+        // try {
+        const res = {};
+        res.insertCustomer = await this.insertCustomer(
+            sequelize,
+            transaction,
+            standardOrder.customer.name,
+            standardOrder.customer.phone,
+            standardOrder.customer.email
+        );
+        res.insertDishes = await this.insertDishes(sequelize, standardOrder, transaction);
+        res.insertSaladIngredients = await this.insertSaladIngredients(sequelize, standardOrder, transaction);
+        res.insertStandOrderData = await this.insertStandardOrdersData(sequelize, transaction, standardOrder, pooledOrderId);
+        res.insertStandardOrdersToDishes = await this.insertStandardOrdersToDishes(sequelize, transaction, standardOrder);
+        res.insertDishesToSaladIngredients = await this.insertDishesToSaladIngredients(sequelize, transaction, standardOrder);
+        console.log('ORDER ID: ', standardOrder.id);
+        return res;
+        // resolve(res);
+        // } catch (err) {
+        // reject(err);
+        // }
         // });
     }
 

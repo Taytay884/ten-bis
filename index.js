@@ -4,27 +4,35 @@ const PORT = process.env.PORT || 5000;
 const requestLib = require('request');
 const j = requestLib.jar();
 const request = requestLib.defaults({jar: j});
+const cron = require('node-cron');
 
 const LoginServiceClass = require('./services/login');
 const LoginService = new LoginServiceClass(request);
 const OrderServiceClass = require('./services/order');
 const OrderService = new OrderServiceClass(request);
 const ParseService = require('./services/parse');
+const DatabaseService = require('./services/database');
 
 const LOGIN_URL = 'http://10bis.co.il/reshome/Account/LogOn?ReturnUrl=%2freshome%2f';
 const MAIN_URL = 'https://www.10bis.co.il/reshome/';
 const STANDARD_ORDER_URL = 'https://www.10bis.co.il/reshome/Orders/Standard?id=';
 const POOLED_ORDER_URL = 'https://www.10bis.co.il/reshome/Orders/Pooled?id=';
 
-async function initLogin() {
-    return await LoginService.login(LOGIN_URL);
-}
-
 let response = '<h1>lala</h1>';
 
-const lala = init();
+cron.schedule('0 22 * * *', init, {});
 
 async function init() {
+    try {
+        const res = await grabDataAndInsertToDatabase();
+        console.log(res);
+    } catch (err) {
+        // todo: if err === timeout.
+        setTimeout(() => init(), 5000);
+    }
+}
+
+async function grabDataAndInsertToDatabase() {
     const isLoggedIn = await initLogin();
     if (!isLoggedIn) {
         console.log('Not logged in!');
@@ -43,9 +51,14 @@ async function init() {
     const jsonStandardOrders = ParseService.parseJsonStringsToJson(jsonStringsStandardOrders);
     const pooledOrders = ParseService.mapJsonPooledOrdersToOrders(jsonPooledOrders);
     const standardOrders = ParseService.mapJsonStandardOrdersToOrders(jsonStandardOrders);
-    console.log(pooledOrders);
-    console.log(standardOrders);
+    const res = await DatabaseService.insertOrdersData(pooledOrders, standardOrders);
+    return res;
 }
+
+async function initLogin() {
+    return await LoginService.login(LOGIN_URL);
+}
+
 
 express()
     .use(express.static(path.join(__dirname, 'public')))
