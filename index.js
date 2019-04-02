@@ -11,7 +11,8 @@ const LoginService = new LoginServiceClass(request);
 const OrderServiceClass = require('./services/order');
 const OrderService = new OrderServiceClass(request);
 const ParseService = require('./services/parse');
-const DatabaseService = require('./services/database');
+const SaveDatabaseService = require('./services/save-database');
+const LoadDatabaseService = require('./services/load-database');
 
 const LOGIN_URL = 'http://10bis.co.il/reshome/Account/LogOn?ReturnUrl=%2freshome%2f';
 const MAIN_URL = 'https://www.10bis.co.il/reshome/';
@@ -49,7 +50,7 @@ async function grabDataAndInsertToDatabase() {
     const jsonStandardOrders = ParseService.parseJsonStringsToJson(jsonStringsStandardOrders);
     const pooledOrders = ParseService.mapJsonPooledOrdersToOrders(jsonPooledOrders);
     const standardOrders = ParseService.mapJsonStandardOrdersToOrders(jsonStandardOrders);
-    const res = await DatabaseService.insertOrdersData(pooledOrders, standardOrders);
+    const res = await SaveDatabaseService.insertOrdersData(pooledOrders, standardOrders);
     return res;
 }
 
@@ -58,14 +59,7 @@ async function initLogin() {
 }
 
 async function getData() {
-    return new Promise(resolve => {
-        console.log('User ask for data, getting data...');
-        setTimeout(() => {
-            resolve({data: 'Some data', data2: 'Some data2'})
-        }, 5000);
-        return true;
-    });
-
+    return await LoadDatabaseService.getData();
 }
 
 express()

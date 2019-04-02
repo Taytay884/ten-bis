@@ -7,7 +7,7 @@ config = {
     port: 3306
 };
 
-class DatabaseService {
+class SaveDatabaseService {
     constructor() {
 
     }
@@ -263,4 +263,4 @@ class DatabaseService {
 
 }
 
-module.exports = new DatabaseService();
+module.exports = new SaveDatabaseService();
