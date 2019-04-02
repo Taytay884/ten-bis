@@ -59,7 +59,6 @@ async function initLogin() {
     return await LoginService.login(LOGIN_URL);
 }
 
-
 express()
     .use(express.static(path.join(__dirname, 'public')))
     .get('/', (req, res) => res.send(response))
