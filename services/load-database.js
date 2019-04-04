@@ -16,9 +16,9 @@ class LoadDatabase {
     // Get the most popular dish for this month. V
     // Companies, how much money they spent. V
     // Salad ingredients | how many time ordered. V
-    // Sum of standardOrders costs for today.
-    // Sum of standardOrders costs for the month.
-    // Customers with phone and email.
+    // Sum of standardOrders costs for today. V
+    // Sum of standardOrders costs for the month. V
+    // Customers with phone and email. V
 
     async getData() {
         const sequelize = await this.connectDatabase();
@@ -28,7 +28,8 @@ class LoadDatabase {
             res.mostPopularDishForLastMonth = await this.getMostPopularDishForLastMonth(sequelize);
             res.companiesSpendForLastMonth = await this.getCompaniesSpendForLastMonth(sequelize);
             res.saladIngredientCountOrdersForLastMonth = await this.getSaladIngredientCountForLastMonth(sequelize);
-            // res.push(await Promise.all());
+            res.ordersSumForLastMonth = await this.getOrdersSumForLastMonth(sequelize);
+            res.customers = await this.getCustomers(sequelize);
             await sequelize.close();
             return res;
         } catch (err) {
@@ -99,10 +100,36 @@ class LoadDatabase {
         WHERE so.date > DATE(?) AND so.date < DATE(?)
         GROUP by si.name
         ORDER BY count(si.name) DESC;`,
-        {
-            replacements: [before30Days, today],
-            type: Sequelize.QueryTypes.SELECT,
-        });
+            {
+                replacements: [before30Days, today],
+                type: Sequelize.QueryTypes.SELECT,
+            });
+    }
+
+    async getOrdersSumForLastMonth(sequelize) {
+        const today = new Date();
+        const before30Days = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+        return await sequelize.query(`
+        SELECT date, sum(price) as total_order_price FROM tenbis1.standard_order
+        WHERE date > DATE(?) AND date < DATE(?)
+        GROUP BY date
+        ORDER BY date DESC`,
+            {
+                replacements: [before30Days, today],
+                type: Sequelize.QueryTypes.SELECT,
+            });
+    }
+
+    async getCustomers(sequelize) {
+        const today = new Date();
+        const before30Days = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+        return await sequelize.query(`
+        SELECT TRIM(name) as name, phone, email FROM tenbis1.customer
+        ORDER BY TRIM(name) ASC`,
+            {
+                replacements: [before30Days, today],
+                type: Sequelize.QueryTypes.SELECT,
+            });
     }
 
     async connectDatabase() {
