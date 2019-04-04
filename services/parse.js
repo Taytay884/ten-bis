@@ -55,7 +55,7 @@ class ParseService {
             return new Dish(dish.ID, dish.Name, dish.TotalPrice, saladIngredients)
         });
 
-        return new StandardOrder(standardOrder.OrderID, timestamp, customer, totalPrice, dishes, address);
+        return new StandardOrder(standardOrder.OrderID, timestamp, customer, totalPrice, dishes, address, standardOrder.ResName);
     }
 
     checkPhoneIsValid(phone) {

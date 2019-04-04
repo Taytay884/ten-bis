@@ -5,8 +5,6 @@ config = {
     password: 'Thecool1',
     host: 'www.db4free.net',
     port: 3306,
-
-
 };
 
 class SaveDatabaseService {
@@ -139,8 +137,8 @@ class SaveDatabaseService {
 
     async insertSaladIngredient(sequelize, transaction, id, name, price) {
         return await sequelize.query(`
-                INSERT INTO tenbis1.salad_ingredient (id, name, price) 
-                VALUES (?, ?, ?)`,
+                INSERT INTO tenbis1.salad_ingredient (name) 
+                VALUES (?)`,
             {
                 replacements: [id, name, price],
                 type: Sequelize.QueryTypes.INSERT,
@@ -179,18 +177,19 @@ class SaveDatabaseService {
             standardOrder.price,
             standardOrder.address,
             pooledOrderId,
+            standardOrder.restaurantName,
             standardOrder.customer);
     }
 
-    async insertStandardOrderData(sequelize, transaction, orderId, date, price, address, pooledOrderId, customer) {
+    async insertStandardOrderData(sequelize, transaction, orderId, date, price, address, pooledOrderId, restaurantName, customer) {
         return await sequelize.query(`
-                INSERT INTO tenbis1.standard_order (id, date, price, address, pooled_order_id, customer_id) 
-                VALUES (?, ?, ?, ?, ?,
+                INSERT INTO tenbis1.standard_order (id, date, price, address, pooled_order_id, restaurant_name, customer_id) 
+                VALUES (?, ?, ?, ?, ?, ?,
                        (SELECT tenbis1.customer.id
                        FROM tenbis1.customer
                        WHERE tenbis1.customer.name = ? AND customer.email = ?))`,
             {
-                replacements: [orderId, date, price, address, pooledOrderId, customer.name, customer.email],
+                replacements: [orderId, date, price, address, pooledOrderId, restaurantName, customer.name, customer.email],
                 type: Sequelize.QueryTypes.INSERT,
                 transaction: transaction
             }).catch((err) => {
@@ -225,18 +224,18 @@ class SaveDatabaseService {
     async insertDishesToSaladIngredients(sequelize, transaction, standardOrder) {
         const promises = standardOrder.dishes.map((dish) => {
             return dish.saladIngredients.map((saladIngredient) => {
-                return this.insertDishToSaladIngredient(sequelize, transaction, dish.id, saladIngredient.id);
+                return this.insertDishToSaladIngredient(sequelize, transaction, dish.id, saladIngredient.name);
             });
         });
         return Promise.all(promises);
     }
 
-    async insertDishToSaladIngredient(sequelize, transaction, dishId, saladIngredientId) {
+    async insertDishToSaladIngredient(sequelize, transaction, dishId, saladIngredientName) {
         return await sequelize.query(`
                 INSERT INTO tenbis1.dish_to_salad_ingredient (dish_id, salad_ingredient_id) 
-                VALUES (?, ?)`,
+                VALUES (?, (SELECT id FROM salad_ingredient WHERE TRIM(name) = TRIM(?)))`,
             {
-                replacements: [dishId, saladIngredientId],
+                replacements: [dishId, saladIngredientName],
                 type: Sequelize.QueryTypes.INSERT,
                 transaction: transaction
             }).catch(err => {

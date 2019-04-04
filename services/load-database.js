@@ -44,12 +44,12 @@ class LoadDatabase {
     async getMostPopularDishForToday(sequelize) {
         const today = new Date();
         const res = await sequelize.query(`
-                SELECT dish.name as dish_name, count(dish.name) as orders_count FROM standard_order so
+                SELECT dish.name as dish_name, count(dish.name) as orders_count, so.restaurant_name FROM standard_order so
                 JOIN order_to_dish otd on otd.order_id = so.id
                 JOIN dish on dish.id = otd.dish_id
                 WHERE so.date = DATE(?)
-                GROUP by dish.name
-                ORDER BY count(dish.name) DESC;`,
+                GROUP by dish.name, so.restaurant_name
+                ORDER BY so.restaurant_name DESC, count(dish.name) DESC`,
             {
                 replacements: [today],
                 type: Sequelize.QueryTypes.SELECT,
@@ -61,12 +61,12 @@ class LoadDatabase {
         const today = new Date();
         const before30Days = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
         return await sequelize.query(`
-                SELECT dish.name as dish_name, count(dish.name) as orders_count FROM standard_order so
+                SELECT dish.name as dish_name, count(dish.name) as orders_count, so.restaurant_name FROM standard_order so
                 JOIN order_to_dish otd on otd.order_id = so.id
                 JOIN dish on dish.id = otd.dish_id
-                WHERE so.date > DATE(?) AND so.date < DATE(?)
-                GROUP by dish.name
-                ORDER BY count(dish.name) DESC`,
+                WHERE so.date >= DATE(?) AND so.date <= DATE(?)
+                GROUP by dish.name, so.restaurant_name
+                ORDER BY so.restaurant_name DESC, count(dish.name) DESC`,
             {
                 replacements: [before30Days, today],
                 type: Sequelize.QueryTypes.SELECT,
@@ -80,7 +80,7 @@ class LoadDatabase {
                 SELECT c.name, sum(so.price) as price  FROM tenbis1.pooled_order as po
                 JOIN tenbis1.standard_order as so ON so.pooled_order_id = po.id
                 JOIN tenbis1.company as c ON po.company_id = c.id
-                WHERE so.date > DATE(?) AND so.date < DATE(?)
+                WHERE so.date >= DATE(?) AND so.date <= DATE(?)
                 group by name
                 order by price desc`,
             {
@@ -98,7 +98,7 @@ class LoadDatabase {
         JOIN dish on dish.id = otd.dish_id
         JOIN dish_to_salad_ingredient dtsi on dtsi.dish_id = dish.id
         JOIN salad_ingredient si on dtsi.salad_ingredient_id = si.id
-        WHERE so.date > DATE(?) AND so.date < DATE(?)
+        WHERE so.date >= DATE(?) AND so.date <= DATE(?)
         GROUP by TRIM(si.name)
         ORDER BY count(TRIM(si.name)) DESC;`,
             {
@@ -112,7 +112,7 @@ class LoadDatabase {
         const before30Days = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
         return await sequelize.query(`
         SELECT date, sum(price) as total_order_price FROM tenbis1.standard_order
-        WHERE date > DATE(?) AND date < DATE(?)
+        WHERE date >= DATE(?) AND date <= DATE(?)
         GROUP BY date
         ORDER BY date DESC`,
             {
