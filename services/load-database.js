@@ -93,14 +93,14 @@ class LoadDatabase {
         const today = new Date();
         const before30Days = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
         return await sequelize.query(`
-        SELECT si.name, count(si.name) as orders FROM standard_order so
+        SELECT TRIM(si.name), count(TRIM(si.name)) as orders FROM standard_order so
         JOIN order_to_dish otd on otd.order_id = so.id
         JOIN dish on dish.id = otd.dish_id
         JOIN dish_to_salad_ingredient dtsi on dtsi.dish_id = dish.id
         JOIN salad_ingredient si on dtsi.salad_ingredient_id = si.id
         WHERE so.date > DATE(?) AND so.date < DATE(?)
-        GROUP by si.name
-        ORDER BY count(si.name) DESC;`,
+        GROUP by TRIM(si.name)
+        ORDER BY count(TRIM(si.name)) DESC;`,
             {
                 replacements: [before30Days, today],
                 type: Sequelize.QueryTypes.SELECT,
