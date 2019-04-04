@@ -10,3 +10,13 @@ td, th {
 .most-ordered-dish {
   color: red;
 }
+
+body {
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+table {
+  margin: 0 auto;
+}

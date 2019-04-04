@@ -4,7 +4,9 @@ config = {
     username: 'taytay884',
     password: 'Thecool1',
     host: 'www.db4free.net',
-    port: 3306
+    port: 3306,
+
+
 };
 
 class SaveDatabaseService {
@@ -13,8 +15,11 @@ class SaveDatabaseService {
     }
 
     async insertOrdersData(pooledOrders, standardOrders) {
+        console.log('Connecting to databse...');
         const sequelize = await this.connectDatabase();
+        console.log('Creating a transaction...');
         const transaction = await sequelize.transaction();
+        console.log('Inserting data to database...');
         try {
             const res = [];
             const insertPooledOrderPromises = pooledOrders.map((pooledOrder) => {
@@ -26,15 +31,17 @@ class SaveDatabaseService {
             res.push(await Promise.all(insertPooledOrderPromises));
             res.push(await Promise.all(insertStandardOrdersPromises));
             await transaction.commit();
+            console.log('Transaction committed.');
             await sequelize.close();
+            console.log('Database connection closed.');
             return res;
         } catch (err) {
             console.log(err);
-            if (sequelize) {
-                await sequelize.close();
-            }
             if (transaction) {
                 await transaction.rollback();
+            }
+            if (sequelize) {
+                await sequelize.close();
             }
             throw err;
         }
@@ -44,7 +51,6 @@ class SaveDatabaseService {
         const res = {};
         res.insertCompany = await this.insertCompany(sequelize, pooledOrder, transaction);
         res.insertPooledOrderData = await this.insertPooledOrderData(sequelize, transaction, pooledOrder.id, pooledOrder.companyName, pooledOrder.restaurantName);
-        // res.insertCustomers = await this.insertCustomers(sequelize, pooledOrder, transaction);
         const promises = pooledOrder.orders.map((standardOrder) => {
             return this.insertStandardOrder(sequelize, transaction, standardOrder, pooledOrder.id);
         });
@@ -53,8 +59,6 @@ class SaveDatabaseService {
     }
 
     async insertStandardOrder(sequelize, transaction, standardOrder, pooledOrderId) {
-        // return new Promise(async (resolve, reject) => {
-        // try {
         const res = {};
         res.insertCustomer = await this.insertCustomer(
             sequelize,
@@ -70,11 +74,6 @@ class SaveDatabaseService {
         res.insertDishesToSaladIngredients = await this.insertDishesToSaladIngredients(sequelize, transaction, standardOrder);
         console.log('ORDER ID: ', standardOrder.id);
         return res;
-        // resolve(res);
-        // } catch (err) {
-        // reject(err);
-        // }
-        // });
     }
 
     async insertCompany(sequelize, pooledOrder, transaction) {
@@ -90,13 +89,6 @@ class SaveDatabaseService {
                 throw err;
             }
         });
-    }
-
-    async insertCustomers(sequelize, pooledOrder, transaction) {
-        const promises = pooledOrder.orders.map((order) => {
-            return this.insertCustomer(sequelize, transaction, order.customer.name, order.customer.phone, order.customer.email);
-        });
-        return Promise.all(promises);
     }
 
     async insertCustomer(sequelize, transaction, name, phone, email) {
@@ -223,7 +215,11 @@ class SaveDatabaseService {
                 replacements: [orderId, dishId],
                 type: Sequelize.QueryTypes.INSERT,
                 transaction: transaction
-            });
+            }).catch(err => {
+            if (err.name != 'SequelizeUniqueConstraintError') {
+                throw err;
+            }
+        })
     }
 
     async insertDishesToSaladIngredients(sequelize, transaction, standardOrder) {
@@ -243,7 +239,11 @@ class SaveDatabaseService {
                 replacements: [dishId, saladIngredientId],
                 type: Sequelize.QueryTypes.INSERT,
                 transaction: transaction
-            });
+            }).catch(err => {
+            if (err.name != 'SequelizeUniqueConstraintError') {
+                throw err;
+            }
+        })
     }
 
     async connectDatabase() {
@@ -252,15 +252,12 @@ class SaveDatabaseService {
             host: config.host,
             port: config.port,
             pool: {
-                max: 15,
-                min: 5,
-                idle: 20000,
-                evict: 15000,
-                acquire: 30000
+                maxIdleTime: 10000
             },
         });
     }
 
 }
 
-module.exports = new SaveDatabaseService();
+module
+    .exports = new SaveDatabaseService();

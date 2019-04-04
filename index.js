@@ -23,13 +23,16 @@ cron.schedule('0 22 * * *', init, {});
 
 async function init() {
     try {
-        const res = await grabDataAndInsertToDatabase();
-        console.log(res);
+        await grabDataAndInsertToDatabase();
+        console.log('Done scheduled job.')
     } catch (err) {
+        console.log('Error', err);
         // todo: if err === timeout.
         setTimeout(() => init(), 5000);
     }
 }
+
+init();
 
 async function grabDataAndInsertToDatabase() {
     const isLoggedIn = await initLogin();
@@ -68,7 +71,11 @@ express()
         res.sendFile(path.join(__dirname + '/frontend/index.html'));
     })
     .get('/get-data', async (req, res) => {
-        const data = await getData();
-        res.send(data);
+        try {
+            const data = await getData();
+            res.send(data);
+        } catch (err) {
+            res.status(500).send(new Error('Failed to get data.'));
+        }
     })
     .listen(PORT, () => console.log(`Listening on ${PORT}`));

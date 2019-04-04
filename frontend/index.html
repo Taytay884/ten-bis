@@ -6,37 +6,23 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>10Bis reports manager</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<p>
-    מידע שמעניין אותי:
-    *שם החברה - וכמה כסף ואז אוכל לדעת כמה מכל חברה.
-    * שם מנה שהלכה הכי הרבה
-    * מרכיבי הסלט לפי מספר הפעמים שהן מופיעות.
-
-    סיכום יומי כמה כסף נכנס ושיהיה סיכום חודשי על מנת לבדוק שזה תואם לדוחות שלהם.
-
-    לגביי טלפונים
-    אם אפשרי לקחת שם הבן אדם והפלאפון שלו.
-    ולבדוק אופציה לשלוח לו סמס עם משוב.
-    יש לי גם משתמש בסיבוס
-</p>
 
 <h1>
     דוחות תן ביס
 </h1>
 
 <h2 class="most-ordered-dish">
-    היום שולם עד כה: 2025 ש"ח.
+
 </h2>
 
 <h2>
     דו"ח חברות
 </h2>
-<table class="pure-table pure-table-bordered">
+<table id="companies-report" class="pure-table pure-table-bordered">
     <thead>
     <tr>
         <th>שם החברה</th>
@@ -44,24 +30,12 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>Compie Technologies</td>
-        <td>2000</td>
-    </tr>
-    <tr>
-        <td>Company A</td>
-        <td>1234</td>
-    </tr>
-    <tr>
-        <td>Company B</td>
-        <td>50</td>
-    </tr>
     </tbody>
 </table>
 <h2>
     דו"ח מרכיבי סלט
 </h2>
-<table class="pure-table pure-table-bordered" >
+<table id="salad-ingredient-report" class="pure-table pure-table-bordered">
     <thead>
     <tr>
         <th>מרכיב</th>
@@ -69,29 +43,13 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>מלפפון</td>
-        <td>9</td>
-    </tr>
-    <tr>
-        <td>גמבה</td>
-        <td>22</td>
-    </tr>
-    <tr>
-        <td>עגבניה</td>
-        <td>5</td>
-    </tr>
-    <tr>
-        <td>נענע</td>
-        <td>0</td>
-    </tr>
     </tbody>
 </table>
 
 <h2>
     דו"ח המנות הפופלריות
 </h2>
-<table class="pure-table pure-table-bordered" >
+<table id="dish-popular-report" class="pure-table pure-table-bordered" >
     <thead>
     <tr>
         <th>מנה</th>
@@ -99,30 +57,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>חזה עוף</td>
-        <td>38</td>
-    </tr>
-    <tr>
-        <td>מנת השף</td>
-        <td>9</td>
-    </tr>
-    <tr>
-        <td>סלט יווני</td>
-        <td>4</td>
-    </tr>
-    <tr>
-        <td>המבורגר</td>
-        <td>3</td>
-    </tr>
     </tbody>
 </table>
 
 <h2>
-    טבלת כספים יומי
+    טבלת רווחים יומית
 </h2>
 
-<table class="pure-table pure-table-bordered" >
+<table id="daily-earnings-report" class="pure-table pure-table-bordered">
     <thead>
     <tr>
         <th>תאריך</th>
@@ -130,45 +72,6 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>1.1.2019</td>
-        <td>2000</td>
-    </tr>
-    <tr>
-        <td>2.1.2019</td>
-        <td>560</td>
-    </tr>
-    <tr>
-        <td>3.1.2019</td>
-        <td>13234</td>
-    </tr>
-    </tbody>
-</table>
-
-<h2>
-    טבלת כספים חודשי
-</h2>
-
-<table class="pure-table pure-table-bordered">
-    <thead>
-    <tr>
-        <th>חודש</th>
-        <th>תשלום</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>ינואר 2019</td>
-        <td>98000</td>
-    </tr>
-    <tr>
-        <td>פברואר 2019</td>
-        <td>15987</td>
-    </tr>
-    <tr>
-        <td>מרץ 2019</td>
-        <td>5998</td>
-    </tr>
     </tbody>
 </table>
 
@@ -176,40 +79,18 @@
     לקוחות
 </h2>
 
-<textarea name="send-message" id="sms-message" cols="30" rows="3" placeholder="רשום הודעה לשליחה"></textarea>
+<!--<textarea name="send-message" id="sms-message" cols="30" rows="3" placeholder="רשום הודעה לשליחה"></textarea>-->
 
-<table class="pure-table pure-table-bordered">
+<table id="customers-report" class="pure-table pure-table-bordered">
     <thead>
     <tr>
         <th>לקוח</th>
         <th>מספר פלאפון</th>
         <th>חברה</th>
-        <th>תאריך קניה אחרון</th>
-        <th>שלח הודעה</th>
+        <!--<th>שלח הודעה</th>-->
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>יהורם גאון</td>
-        <td>0523499999</td>
-        <td>Company A</td>
-        <td>20.2.2019</td>
-        <td><button class="pure-button">שלח הודעה!</button></td>
-    </tr>
-    <tr>
-        <td>יהורם גאון</td>
-        <td>0523499999</td>
-        <td>Company A</td>
-        <td>היום!</td>
-        <td><button class="pure-button">שלח הודעה!</button></td>
-    </tr>
-    <tr>
-        <td>משה המניאק</td>
-        <td>0523492222</td>
-        <td>-</td>
-        <td>25.1.2019</td>
-        <td><button class="pure-button">שלח הודעה!</button></td>
-    </tr>
     </tbody>
 </table>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
