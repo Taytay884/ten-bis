@@ -32,8 +32,6 @@ async function init() {
     }
 }
 
-init();
-
 async function grabDataAndInsertToDatabase() {
     const isLoggedIn = await initLogin();
     if (!isLoggedIn) {
