@@ -24,7 +24,7 @@ class LoadDatabase {
         const sequelize = await this.connectDatabase();
         try {
             const res = {};
-            res.mostPopularDishForYesterday = await this.getMostPopularDishForYesterday(sequelize);
+            res.mostPopularDishForToday = await this.getMostPopularDishForToday(sequelize);
             res.mostPopularDishForLastMonth = await this.getMostPopularDishForLastMonth(sequelize);
             res.companiesSpendForLastMonth = await this.getCompaniesSpendForLastMonth(sequelize);
             res.saladIngredientCountOrdersForLastMonth = await this.getSaladIngredientCountForLastMonth(sequelize);
@@ -41,20 +41,20 @@ class LoadDatabase {
         }
     }
 
-    async getMostPopularDishForYesterday(sequelize) {
-        const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000);
+    async getMostPopularDishForToday(sequelize) {
+        const today = new Date();
         const res = await sequelize.query(`
                 SELECT dish.name as dish_name, count(dish.name) as orders_count FROM standard_order so
                 JOIN order_to_dish otd on otd.order_id = so.id
                 JOIN dish on dish.id = otd.dish_id
-                Where so.date = DATE(?)
+                WHERE so.date = DATE(?)
                 GROUP by dish.name
                 ORDER BY count(dish.name) DESC;`,
             {
-                replacements: [yesterday],
+                replacements: [today],
                 type: Sequelize.QueryTypes.SELECT,
             });
-        return res[0];
+        return res;
     }
 
     async getMostPopularDishForLastMonth(sequelize) {

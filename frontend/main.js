@@ -7,7 +7,7 @@ axios.get('/get-data')
     });
 
 function displayData(data) {
-    initMostPopularDishForYesterday(data.mostPopularDishForYesterday);
+    initMostPopularDishForToday(data.mostPopularDishForToday);
     initCompanyMonthlyReport(data.companiesSpendForLastMonth);
     initCountSaladIngredientsOrdersMonthlyReport(data.saladIngredientCountOrdersForLastMonth);
     initMostPopularDishMonthlyReport(data.mostPopularDishForLastMonth);
@@ -20,9 +20,12 @@ function displayErrorMessage() {
     bodyElement.innerHTML = 'שגיאה, אנא רענן את הדף.'
 }
 
-function initMostPopularDishForYesterday(data) {
-    const mostOrderedDishElement = document.querySelector('.most-ordered-dish');
-    mostOrderedDishElement.innerHTML = `<span>${data.dish_name}</span>, <span>${data.orders_count}</span> הזמנות!`;
+function initMostPopularDishForToday(popularDishesDataForToday) {
+    const popularDishTableElement = document.querySelector('#dish-popular-daily-report tbody');
+    popularDishesDataForToday.forEach((popularDishData) => {
+        const row = createTableRowFromData(popularDishData);
+        popularDishTableElement.appendChild(row);
+    })
 }
 
 function initCompanyMonthlyReport(companiesData) {
