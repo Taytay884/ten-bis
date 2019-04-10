@@ -19,7 +19,7 @@ const MAIN_URL = 'https://www.10bis.co.il/reshome/';
 const STANDARD_ORDER_URL = 'https://www.10bis.co.il/reshome/Orders/Standard?id=';
 const POOLED_ORDER_URL = 'https://www.10bis.co.il/reshome/Orders/Pooled?id=';
 
-cron.schedule('0 22 * * *', init, {});
+cron.schedule('0 15 * * *', init, {});
 
 async function init() {
     try {
@@ -73,7 +73,7 @@ express()
             const data = await getData();
             res.send(data);
         } catch (err) {
-            res.status(500).send(new Error('Failed to get data.'));
+            res.status(500).send(new Error( 'Failed to get data.'));
         }
     })
     .listen(PORT, () => console.log(`Listening on ${PORT}`));
