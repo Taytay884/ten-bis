@@ -138,7 +138,7 @@ class SaveDatabaseService {
     async insertSaladIngredient(sequelize, transaction, id, name, price) {
         return await sequelize.query(`
                 INSERT INTO tenbis1.salad_ingredient (name) 
-                VALUES (?)`,
+                VALUES (TRIM(?))`,
             {
                 replacements: [id, name, price],
                 type: Sequelize.QueryTypes.INSERT,
