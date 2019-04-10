@@ -129,18 +129,18 @@ class SaveDatabaseService {
     async insertSaladIngredients(sequelize, standardOrder, transaction) {
         const promises = standardOrder.dishes.map((dish) => {
             return dish.saladIngredients.map((saladIngredient) => {
-                return this.insertSaladIngredient(sequelize, transaction, saladIngredient.id, saladIngredient.name, saladIngredient.price);
+                return this.insertSaladIngredient(sequelize, transaction, saladIngredient.name);
             });
         });
         return Promise.all(promises);
     }
 
-    async insertSaladIngredient(sequelize, transaction, id, name, price) {
+    async insertSaladIngredient(sequelize, transaction, saladIngredientName) {
         return await sequelize.query(`
                 INSERT INTO tenbis1.salad_ingredient (name) 
                 VALUES (TRIM(?))`,
             {
-                replacements: [id, name, price],
+                replacements: [saladIngredientName],
                 type: Sequelize.QueryTypes.INSERT,
                 transaction: transaction
             }).catch((err) => {
