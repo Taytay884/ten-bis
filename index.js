@@ -19,21 +19,14 @@ const MAIN_URL = 'https://www.10bis.co.il/reshome/';
 const STANDARD_ORDER_URL = 'https://www.10bis.co.il/reshome/Orders/Standard?id=';
 const POOLED_ORDER_URL = 'https://www.10bis.co.il/reshome/Orders/Pooled?id=';
 
-let scheduleIsRunning = false;
 
-cron.schedule('*/2 * * * *', init, {});
+cron.schedule('*/20 * * * *', init, {});
 
 async function init() {
-    if (scheduleIsRunning) {
-        return;
-    }
-    scheduleIsRunning = true;
     try {
         await grabDataAndInsertToDatabase();
         console.log('Done scheduled job.')
-        scheduleIsRunning = false;
     } catch (err) {
-        scheduleIsRunning = false;
         console.log('Error', err);
         // todo: if err === timeout.
         setTimeout(() => init(), 5000);
