@@ -29,9 +29,11 @@ async function init() {
     } catch (err) {
         console.log('Error', err);
         // todo: if err === timeout.
-        setTimeout(() => init(), 5000);
+        // setTimeout(() => init(), 5000);
     }
 }
+
+// init();
 
 async function grabDataAndInsertToDatabase() {
     const isLoggedIn = await initLogin();
