@@ -187,9 +187,9 @@ class SaveDatabaseService {
                 VALUES (?, ?, ?, ?, ?, ?,
                        (SELECT tenbis1.customer.id
                        FROM tenbis1.customer
-                       WHERE tenbis1.customer.name = ? AND customer.email = ?))`,
+                       WHERE customer.email = ?))`,
             {
-                replacements: [orderId, date, price, address, pooledOrderId, restaurantName, customer.name, customer.email],
+                replacements: [orderId, date, price, address, pooledOrderId, restaurantName, customer.email],
                 type: Sequelize.QueryTypes.INSERT,
                 transaction: transaction
             }).catch((err) => {

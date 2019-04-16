@@ -4,7 +4,11 @@
     <bookmark url="file://$PROJECT_DIR$/node_modules/sequelize/lib/dialects/mysql/query.js" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26e05626-4943-468d-b32d-25aa0635897b" name="Default Changelist" comment="" />
+    <list default="true" id="26e05626-4943-468d-b32d-25aa0635897b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/save-database.js" beforeDir="false" afterPath="$PROJECT_DIR$/services/save-database.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -19,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/save-database.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2610">
-              <caret line="145" column="20" selection-start-line="145" selection-start-column="20" selection-end-line="145" selection-end-column="20" />
+            <state relative-caret-position="264">
+              <caret line="187" column="50" lean-forward="true" selection-start-line="187" selection-start-column="50" selection-end-line="187" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -28,8 +32,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/load-database.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1170">
-              <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
+            <state relative-caret-position="169">
+              <caret line="127" column="47" selection-start-line="127" selection-start-column="42" selection-end-line="127" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -37,8 +41,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+            <state relative-caret-position="218">
+              <caret line="35" selection-start-line="35" selection-end-line="35" />
             </state>
           </provider>
         </entry>
@@ -47,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/services/parse.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="18">
-              <caret line="1" column="49" lean-forward="true" selection-start-line="1" selection-start-column="49" selection-end-line="1" selection-end-column="49" />
+              <caret line="1" column="49" selection-start-line="1" selection-start-column="49" selection-end-line="1" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -65,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/services/order.js">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="25" lean-forward="true" selection-start-column="25" selection-end-column="25" />
+              <caret column="25" selection-start-column="25" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -83,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/frontend/main.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="432">
-              <caret line="24" column="60" lean-forward="true" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
+              <caret line="24" column="60" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -101,9 +105,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>insertStandardOrderData</find>
-      <find>מלפפ</find>
-      <find>transaction.comm</find>
       <find>phone01</find>
       <find>CompanyName</find>
       <find>2550397</find>
@@ -131,6 +132,9 @@
       <find>date &gt;</find>
       <find>INSERT</find>
       <find>Insert into</find>
+      <find>\</find>
+      <find>email</find>
+      <find>customer.name</find>
     </findStrings>
     <replaceStrings>
       <replace>tenbis1</replace>
@@ -173,6 +177,7 @@
         <option value="$PROJECT_DIR$/model/standard.order.model.js" />
         <option value="$PROJECT_DIR$/services/load-database.js" />
         <option value="$PROJECT_DIR$/frontend/index.html" />
+        <option value="$PROJECT_DIR$/frontend/lala.sql" />
         <option value="$PROJECT_DIR$/services/save-database.js" />
         <option value="$PROJECT_DIR$/index.js" />
       </list>
@@ -293,11 +298,12 @@
       <workItem from="1554464708870" duration="15000" />
       <workItem from="1554928301772" duration="1186000" />
       <workItem from="1555356660651" duration="1149000" />
+      <workItem from="1555431867138" duration="926000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93890000" />
+    <option name="totallyTimeSpent" value="94816000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -310,14 +316,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49019608" visible="true" weight="0.15465961" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49019608" visible="true" weight="0.15465961" />
       <window_info id="Structure" order="1" sideWeight="0.50980395" side_tool="true" weight="0.15472417" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.9532578" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.30169973" />
       <window_info anchor="bottom" x="401" y="163" width="740" height="504" id="Debug" order="3" type="FLOATING" weight="0.9164306" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -325,7 +332,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32719547" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32719547" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32719547" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24967825" />
@@ -524,24 +531,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/save-database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2610">
-          <caret line="145" column="20" selection-start-line="145" selection-start-column="20" selection-end-line="145" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/load-database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
-          <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/parse.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
-          <caret line="1" column="49" lean-forward="true" selection-start-line="1" selection-start-column="49" selection-end-line="1" selection-end-column="49" />
+          <caret line="1" column="49" selection-start-line="1" selection-start-column="49" selection-end-line="1" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -555,7 +548,7 @@
     <entry file="file://$PROJECT_DIR$/services/order.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="25" lean-forward="true" selection-start-column="25" selection-end-column="25" />
+          <caret column="25" selection-start-column="25" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -569,7 +562,7 @@
     <entry file="file://$PROJECT_DIR$/frontend/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
-          <caret line="24" column="60" lean-forward="true" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
+          <caret line="24" column="60" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
         </state>
       </provider>
     </entry>
@@ -580,10 +573,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/lala.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/load-database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="127" column="47" selection-start-line="127" selection-start-column="42" selection-end-line="127" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/save-database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="187" column="50" lean-forward="true" selection-start-line="187" selection-start-column="50" selection-end-line="187" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        <state relative-caret-position="218">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
         </state>
       </provider>
     </entry>

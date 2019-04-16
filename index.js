@@ -33,7 +33,7 @@ async function init() {
     }
 }
 
-// init();
+init();
 
 async function grabDataAndInsertToDatabase() {
     const isLoggedIn = await initLogin();
@@ -76,7 +76,7 @@ express()
             const data = await getData();
             res.send(data);
         } catch (err) {
-            res.status(500).send(new Error( 'Failed to get data.'));
+            res.status(500).send(new Error('Failed to get data.'));
         }
     })
     .listen(PORT, () => console.log(`Listening on ${PORT}`));
